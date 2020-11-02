@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/text_search"
+        android:layout_width="250dp"
+        android:layout_height="49dp"
+       android:hint="search..."
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <Button
+        android:id="@+id/search_imageView"
+        android:layout_width="94dp"
+        android:layout_height="24dp"
+        android:background="@color/colorAccent"
+        android:text="Search"
+        android:textColor="#fff"
+
+        app:layout_constraintBottom_toBottomOf="@+id/text_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toEndOf="@+id/text_search"
+        app:layout_constraintTop_toTopOf="@+id/text_search"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tweets_recycler_view"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_search"
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginTop="18dp"
+        tools:listitem="@layout/layout_tweet_second" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_clear"
+        android:layout_width="84dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="2dp"
+        android:text="ClearText"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/search_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/search_imageView"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

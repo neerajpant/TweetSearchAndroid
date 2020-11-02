@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_tweet_card_elevation">10dp</dimen>
+    <dimen name="item_tweet_padding">10dp</dimen>
+    <dimen name="item_twitter_text_size">16dp</dimen>
+    <dimen name="item_twitter_creator_text_size">20dp</dimen>
+    <dimen name="tweeter_image_dimen">100dp</dimen>
+    <dimen name="tweeter_image_margin">10dp</dimen>
+    <dimen name="tweet_text_left_margin">10dp</dimen>
+</resources>
