@@ -5,7 +5,10 @@ import com.twitter.tweets.model.Resource
 import com.twitter.tweets.model.ResponseTweet
 import com.twitter.tweets.model.ResponseTweets
 import com.twitter.tweets.repo.TwitterRepository
+import junit.framework.Assert.assertNotNull
+import junit.framework.Assert.assertNull
 import kotlinx.coroutines.test.runBlockingTest
+import org.hamcrest.CoreMatchers
 import org.junit.Before
 import org.junit.Test
 import javax.inject.Inject
@@ -16,11 +19,10 @@ class FakeTestRepository : TwitterApi {
     @Inject
     lateinit var twitterApi: TwitterApi
 
-//    @get:Rule
-//    var hiltRule = HiltAndroidRule(this)
+
     lateinit var responseTweet: ResponseTweet
     private var shouldReturnError = false
-    lateinit var twitterRepository: TwitterRepository
+    lateinit var twitterRepository: FakeDataSource
 
     override suspend fun getTweets(): ResponseTweets {
         return ResponseTweets(true, tweetList)
@@ -28,11 +30,17 @@ class FakeTestRepository : TwitterApi {
 
     @Before
     fun initialise() {
-        twitterRepository = TwitterRepository(twitterApi)
+        val tweet1 = ResponseTweet("Tweet1", "@Drump", 20, 23, "", "hello test")
+        val tweet2 = ResponseTweet("Tweet2", "@Trump", 21, 24, "", "hello test")
+        val tweet3 = ResponseTweet("Tweet3", "@Modi", 22, 25, "", "hello test")
+        tweetList.add(tweet1)
+        tweetList.add(tweet2)
+        tweetList.add(tweet3)
+        twitterRepository = FakeDataSource(tweetList)
     }
 
-    fun getResponseMessage( errorState:Boolean): Resource<ArrayList<ResponseTweet>> {
-      shouldReturnError=  errorState
+    fun getResponseMessage(errorState: Boolean): Resource<ArrayList<ResponseTweet>> {
+        shouldReturnError = errorState
         if (shouldReturnError) {
             return Resource.error(data = arrayListOf(), message = "Error Occured")
         }
@@ -50,8 +58,12 @@ class FakeTestRepository : TwitterApi {
 
     @Test
     fun testCoroutine() {
+        //runBlockingTest :skip
         runBlockingTest {
-            twitterRepository.getTweets()
+             //when
+            val responseTweet = twitterRepository.getTweets()
+            //then
+            assertNotNull("Response is Not Null", responseTweet)
         }
     }
 
