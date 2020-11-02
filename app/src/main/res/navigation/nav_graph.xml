@@ -9,5 +9,5 @@
         android:id="@+id/tweetsFragment"
         android:name="com.twitter.tweets.fragment.TweetsFragment"
         android:label="fragment_tweets"
-        tools:layout="@layout/fragment_tweets" />
+        tools:layout="@layout/fragment_tweet_test" />
 </navigation>

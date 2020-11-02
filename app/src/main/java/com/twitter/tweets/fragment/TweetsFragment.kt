@@ -2,6 +2,7 @@ package com.twitter.tweets.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -79,16 +80,10 @@ class TweetsFragment : Fragment() {
             }
             if(this::query.isInitialized && query.isNotEmpty())
                 adapter.filter.filter(query)
-
         }
 
-        text_search.setOnClickListener {
-           text_search.text.toString()?.let {
-
-
-           }
-        }
         text_clear.setOnClickListener {
+            error_image.visibility = View.GONE
             println("textClear Call")
             text_search.text?.let {
                   it.clear()
@@ -110,22 +105,22 @@ class TweetsFragment : Fragment() {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         println("Success Call")
-                        println("TweetFragment status ${resource.data?.responseStatus}")
-
-                        //recyclerView.visibility = View.VISIBLE
-                        //progressBar.visibility = View.GONE
+                        tweets_recycler_view.visibility = View.VISIBLE
+                        progress_bar.visibility = View.GONE
+                        error_image.visibility = View.GONE
                         resource.data?.let { tweets -> retrieveList(tweets) }
                     }
                     Status.ERROR -> {
                         println("TweetFragmentError ${it.message}")
-                        //recyclerView.visibility = View.VISIBLE
-                        //progressBar.visibility = View.GONE
-                        //Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                       tweets_recycler_view.visibility = View.VISIBLE
+                        progress_bar.visibility = View.GONE
+                        error_image.visibility = View.VISIBLE
+
                     }
                     Status.LOADING -> {
 
-                        //  progressBar.visibility = View.VISIBLE
-                        // recyclerView.visibility = View.GONE
+                        progress_bar.visibility = View.VISIBLE
+                        tweets_recycler_view.visibility = View.GONE
                     }
                 }
             }
