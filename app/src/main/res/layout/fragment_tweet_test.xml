@@ -24,7 +24,7 @@
         android:id="@+id/search_imageView"
         android:layout_width="94dp"
         android:layout_height="24dp"
-        android:background="@color/colorAccent"
+        android:background="#00acee"
         android:text="Search"
         android:textColor="#fff"
 
